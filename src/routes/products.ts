@@ -16,6 +16,8 @@ router.get('/', async (req: Request, res: Response) => {
 )
 
 router.post('/', async (req: Request, res: Response) => {
+   console.log("Product Request", req.body);
+
    prisma.product.create(
       {
          data: {
@@ -24,12 +26,12 @@ router.post('/', async (req: Request, res: Response) => {
          }
       }
    ).then((q) => {
-      res.status(200)
-      console.log(q);
+      res.status(200).send({ message: 'Product created successfully', product: q })
+      console.log("Product Response", q);
    }).catch((err) => {
       console.error(err);
       console.log(">> Error occurred");
-      res.status(500)
+      res.status(500).send(err)
 
    })
 })
@@ -41,7 +43,7 @@ router.get('/:id', async (req: Request, res: Response) => {
    }).catch((err) => {
       console.error(err);
       console.log(">> Error occurred");
-      res.status(500)
+      res.status(500).send(err)
 
    })
 }
