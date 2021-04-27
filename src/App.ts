@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from "express";
+import express, { NextFunction, query, Request, Response } from "express";
 import startServer from './Server';
 import { PrismaClient } from "@prisma/client";
 
@@ -9,6 +9,7 @@ const app = express();
 const prisma = new PrismaClient()
 
 app.use(express.json())
+
 
 app.use('/api/products', productsRoute)
 app.use('/api/categories', categoriesRoute)
