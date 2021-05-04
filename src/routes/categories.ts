@@ -1,8 +1,7 @@
-import express, { NextFunction, Request, Response } from "express";
-import { PrismaClient } from '@prisma/client';
+import express from "express";
 import { getCategories } from '../controllers/categories';
 
 export const router = express.Router();
-const prisma = new PrismaClient()
 
+// Read
 router.get('/', getCategories)
